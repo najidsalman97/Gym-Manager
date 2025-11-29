@@ -5,7 +5,7 @@ const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   if (req.method !== "GET") {
     res.setHeader("Allow", "GET");
     return res.status(405).json({ error: "Method not allowed" });
@@ -32,4 +32,4 @@ module.exports = async (req, res) => {
   }));
 
   res.status(200).json(mapped);
-};
+}
