@@ -5,9 +5,9 @@ const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   if (req.method === "GET") {
-    // Serve the simple HTML page for members
+    // HTML page for members to check in
     res.setHeader("Content-Type", "text/html; charset=utf-8");
     res.status(200).send(`
 <!DOCTYPE html>
@@ -78,4 +78,4 @@ module.exports = async (req, res) => {
 
   res.setHeader("Allow", "GET, POST");
   return res.status(405).json({ error: "Method not allowed" });
-};
+}
